@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Testimonials — CMYK Signage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    :root{--bg:#050816;--muted:#8f98b2;--c:#00cfff;--m:#ff0077;--y:#ffd500}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:white;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at top left,rgba(0,207,255,.12),transparent 30%),radial-gradient(circle at bottom right,rgba(255,0,119,.12),transparent 30%),radial-gradient(circle at center,rgba(255,213,0,.05),transparent 40%);z-index:-2}
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:70px 70px;pointer-events:none;z-index:-1}
+    .page-header{max-width:1200px;margin:140px auto 0;padding:0 20px}
+    .page-title{font-family:'Inter',sans-serif;font-size:clamp(3rem,6vw,4.5rem);margin-bottom:18px;line-height:1}
+    .rainbow-text{background:linear-gradient(90deg,var(--c),var(--m),var(--y));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .lead{max-width:760px;color:var(--muted);line-height:1.8;margin-bottom:30px}
+    .container{max-width:1000px;margin:40px auto 120px;padding:0 20px}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;backdrop-filter:blur(20px);background:rgba(5,8,22,.7);border-bottom:1px solid rgba(255,255,255,.05)}
+    .nav-inner{max-width:1400px;margin:auto;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+    .logo{font-family:'Inter',sans-serif;font-size:2rem;letter-spacing:.1em;text-decoration:none}
+    .logo span:nth-child(1){color:var(--c)}.logo span:nth-child(2){color:var(--m)}.logo span:nth-child(3){color:var(--y)}.logo span:nth-child(4){color:white}
+    .nav-links{display:flex;gap:30px}
+    .nav-links a{color:#b8bfd4;text-decoration:none;font-size:.95rem;transition:.25s}
+    .nav-links a:hover{color:white}
+    footer{padding:40px;border-top:1px solid rgba(255,255,255,.05);margin-top:40px}
+    .footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-inner p{color:var(--muted)}
+    h1{font-family:'Inter',sans-serif;margin-bottom:12px;font-size:2.4rem}
+    p.lead{color:var(--muted);margin-bottom:18px}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+    .testimonial{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:28px;border-radius:20px;border:1px solid rgba(255,255,255,.06);box-shadow:0 20px 50px rgba(0,0,0,.15);transition:transform .3s,box-shadow .3s}
+    .testimonial:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(0,0,0,.2)}
+    .testimonial p{color:var(--muted);line-height:1.85;margin-bottom:16px;font-size:.98rem}
+    .testimonial h4{font-family:'Inter',sans-serif;margin-top:0}
+    .quote-icon{display:inline-block;font-size:3rem;line-height:1;color:var(--c);margin-bottom:16px}
+    .brand-loop-section{overflow:hidden;margin-top:36px;padding:32px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .brand-loop-header{text-align:center;margin-bottom:24px}
+    .brand-loop-header .sec-label{display:block;color:var(--y);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:12px}
+    .brand-loop-header h2{font-family:'Inter',sans-serif;font-size:clamp(2rem,3vw,2.6rem);margin:0;color:white}
+    .partners-marquee{overflow:hidden;position:relative}
+    .partners-marquee::before,.partners-marquee::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2}
+    .partners-marquee::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+    .partners-marquee::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+    .marquee-track{display:flex;gap:20px;align-items:center;animation:marquee 28s linear infinite}
+    .partner-badge{display:flex;align-items:center;justify-content:center;min-width:160px;height:70px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;flex:0 0 auto;padding:0 14px}
+    .partner-badge img{max-width:100%;max-height:44px;object-fit:contain}
+    .testimonial-loop{overflow:hidden;margin-top:40px}
+    .testimonial-track{display:flex;gap:24px;align-items:stretch;animation:marquee 32s linear infinite}
+    .testimonial-track .testimonial{min-width:320px;flex:0 0 auto}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @media(max-width:980px){.testimonials-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){.partner-badge{min-width:140px}.testimonial-track .testimonial{min-width:260px}}
+    .contact-float{position:fixed;right:24px;bottom:24px;display:flex;flex-direction:column;align-items:flex-end;gap:14px;z-index:1100}
+    .contact-float a{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:white;font-size:1.25rem;font-weight:700;box-shadow:0 20px 40px rgba(0,0,0,.25);transition:transform .25s,box-shadow .25s}
+    .contact-float a:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.28)}
+    .contact-float .whatsapp{
+background:#25D366;
+}
+
+.contact-float .phone{
+background:#111111;
+border:1px solid rgba(255,255,255,.12);
+}
+    
+    @media(max-width:640px){.partner-badge{min-width:140px}.testimonial-track .testimonial{min-width:260px}.contact-float{right:16px;bottom:16px;gap:10px}.contact-float a{width:54px;height:54px;font-size:1rem}}
+
+/* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;backdrop-filter:blur(22px);background:rgba(5,8,22,.78);border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-inner{max-width:1400px;margin:auto;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+  .logo{font-family:'Inter',sans-serif;font-size:2rem;letter-spacing:.1em;text-decoration:none}
+  .logo span:nth-child(1){color:var(--c)}.logo span:nth-child(2){color:var(--m)}.logo span:nth-child(3){color:var(--y)}.logo span:nth-child(4){color:white}
+  .nav-links{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+  .nav-links a{color:#b8bfd4;text-decoration:none;font-size:.92rem;transition:.25s}
+  .nav-links a:hover{color:white}
+  .nav-cta{background:var(--c);color:black!important;padding:11px 24px;border-radius:24px;font-weight:700!important;font-size:.95rem!important;transition:background .25s ease}
+    .nav-cta:hover{background:var(--m);color:white!important}
+  #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-5;pointer-events:none}
+  
+  .footer-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+  .footer-brand p{color:var(--muted);line-height:1.85;margin-top:14px;font-size:.9rem;max-width:280px}
+  .footer-col h4{font-family:'Inter',sans-serif;font-size:1.05rem;margin-bottom:16px;letter-spacing:.06em;color:white}
+  .footer-col a,.footer-col p{color:#b8bfd4;text-decoration:none;display:block;margin-bottom:10px;font-size:.9rem;line-height:1.6;transition:.2s}
+  .footer-col a:hover{color:white}
+  .footer-col .highlight{color:var(--c)!important}
+  .footer-bottom{max-width:1200px;margin:auto;padding-top:28px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .footer-bottom p{color:var(--muted);font-size:.88rem}
+  .footer-bottom a{color:var(--muted);text-decoration:none;font-size:.88rem}
+  .footer-bottom a:hover{color:white}
+  .footer-socials{display:flex;gap:14px;margin-top:18px}
+  .social-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;text-decoration:none;color:#b8bfd4;font-size:.8rem;transition:.2s;font-weight:700}
+  .social-btn:hover{background:rgba(255,255,255,.12);color:white}
+  
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="grid-bg"></div>
+  
+  <nav>
+  <div class="nav-inner">
+    <a href="frontpagett.html" class="logo"><span>C</span><span>M</span><span>Y</span><span>K</span></a>
+    <div class="nav-links">
+      <a href="frontpagett.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="ourinfrastructure.html">Our Infrastructure</a>
+      <a href="servicess.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="corporate-gifting.html">Corporate Gifting</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html" class="nav-cta">Get Quote</a>
+    </div>
+  </div>
+</nav>
+
+  <div class="page-header">
+    <h1 class="page-title rainbow-text">Testimonials</h1>
+    <p class="lead">Trusted by businesses across retail, hospitality and events. These testimonials show the quality, reliability and support clients experience with CMYK Signage.</p>
+  </div>
+
+  <main class="container">
+    <div class="brand-loop-section">
+      <div class="brand-loop-header">
+        <span class="sec-label">Our B2B Clients</span>
+        <h2>Trusted brands we support with signage, print and display</h2>
+      </div>
+      <div class="partners-marquee">
+        <div class="marquee-track">
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 1"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 2"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 3"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 4"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 5"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 6"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 1"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 2"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 3"></div>
+          <div class="partner-badge"><img src="https://via.placeholder.com/180x60/111827/ffffff?text=" alt="Brand 4"></div>
+        </div>
+      </div>
+    </div>
+   
+   
+  </main>
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="frontpagett.html" class="logo"><span>C</span><span>M</span><span>Y</span><span>K</span></a>
+          <p>Delhi NCR's full-service signage and print studio. We design, print, fabricate and install — all in-house. Serving retail, hospitality, corporate and events since 2014.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" title="Instagram">IN</a>
+            <a href="#" class="social-btn" title="Facebook">FB</a>
+            <a href="#" class="social-btn" title="LinkedIn">LI</a>
+            <a href="#" class="social-btn" title="WhatsApp">WA</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <a href="frontpagett.html">Home</a>
+          <a href="aboutus.html">About Us</a>
+          <a href="servicess.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="testimonials.html">Testimonials</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="servicess.html">Glow Sign Boards</a>
+          <a href="servicess.html">ACP Cladding</a>
+          <a href="servicess.html">LED Neon Signs</a>
+          <a href="servicess.html">Vinyl Printing</a>
+          <a href="servicess.html">Vehicle Wraps</a>
+          <a href="servicess.html">Event Backdrops</a>
+          <a href="servicess.html">Window Films</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <p>Email: <a href="mailto:hello@cmyksignage.com" class="highlight">hello@cmyksignage.com</a></p>
+          <p>Phone: <a href="tel:+911234567890" class="highlight">+91 12345 67890</a></p>
+          <p>Location: Delhi, India</p>
+          <p style="margin-top:14px;color:var(--muted);font-size:.82rem">Mon–Fri: 9 AM – 7 PM<br>Sat: 10 AM – 5 PM</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&#169; 2026 CMYK Signage. All rights reserved.</p>
+        <div style="display:flex;gap:20px">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+    <div class="contact-float">
+      <a href="https://wa.me/911234567890?text=Hello%20CMYK%20Signage%20Team" class="whatsapp" target="_blank" rel="noopener" title="Chat on WhatsApp">WA</a>
+      <a href="tel:+911234567890" class="phone" title="Call CMYK Signage">☎</a>
+    </div>
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let mouse = {
+x: window.innerWidth / 2,
+y: window.innerHeight / 2
+};
+
+let scrollVelocity = 0;
+let lastScroll = window.scrollY;
+
+window.addEventListener("mousemove",(e)=>{
+mouse.x = e.clientX;
+mouse.y = e.clientY;
+});
+
+window.addEventListener("scroll",()=>{
+scrollVelocity = window.scrollY - lastScroll;
+lastScroll = window.scrollY;
+});
+
+window.addEventListener("resize",()=>{
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+});
+
+const particles = [];
+
+for(let i=0;i<90;i++){
+
+particles.push({
+
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+
+size: Math.random() * 1.8 + 0.4,
+
+speedX: (Math.random() - 0.5) * 0.3,
+speedY: (Math.random() - 0.5) * 0.3,
+
+opacity: Math.random() * 0.6 + 0.2
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+let dx = mouse.x - p.x;
+let dy = mouse.y - p.y;
+
+let distance = Math.sqrt(dx * dx + dy * dy);
+
+if(distance < 180){
+
+p.x -= dx * 0.0008;
+p.y -= dy * 0.0008;
+
+}
+
+p.y -= scrollVelocity * 0.02;
+
+p.x += p.speedX;
+p.y += p.speedY;
+
+if(p.x < 0) p.x = canvas.width;
+if(p.x > canvas.width) p.x = 0;
+
+if(p.y < 0) p.y = canvas.height;
+if(p.y > canvas.height) p.y = 0;
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.size,0,Math.PI * 2);
+
+ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+
+ctx.shadowBlur = 10;
+ctx.shadowColor = "#00cfff";
+
+ctx.fill();
+
+});
+
+scrollVelocity *= 0.92;
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
